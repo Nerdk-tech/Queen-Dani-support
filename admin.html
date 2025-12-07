@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Queen Dani Admin</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container glass">
+  <h1 class="title">👑 Queen Dani Admin</h1>
+
+  <p>Enter Admin Password</p>
+  <input type="password" id="pass" class="input">
+  <button class="main-btn" onclick="login()">Enter</button>
+
+  <div id="dash" style="display:none; margin-top:20px;">
+    <h2>Suggestions</h2>
+    <div id="list"></div>
+  </div>
+</div>
+
+<script>
+  const PASSWORD = "DANI2025";
+
+  function login() {
+    let p = document.getElementById("pass").value;
+    if (p !== PASSWORD) return alert("Wrong password ❌");
+
+    document.getElementById("dash").style.display = "block";
+    load();
+  }
+
+  function load() {
+    let data = JSON.parse(localStorage.getItem("suggestions") || "[]");
+    let list = document.getElementById("list");
+    list.innerHTML = "";
+
+    data.forEach((item, i) => {
+      list.innerHTML += `
+        <div class="card glass">
+          <p><b>Suggestion:</b> ${item.text}</p>
+          <p><b>Reply:</b> ${item.reply || "<i>No reply yet</i>"}</p>
+
+          <input class="input" id="r-${i}" placeholder="Type reply...">
+          <button class="secondary-btn" onclick="reply(${i})">Send Reply</button>
+        </div>
+        <br>
+      `;
+    });
+  }
+
+  function reply(i) {
+    let data = JSON.parse(localStorage.getItem("suggestions") || "[]");
+    let text = document.getElementById("r-" + i).value;
+
+    data[i].reply = text;
+
+    localStorage.setItem("suggestions", JSON.stringify(data));
+    alert("Reply saved ✔");
+    load();
+  }
+</script>
+
+</body>
+</html>

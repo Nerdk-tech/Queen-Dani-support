@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QUEEN DANI SUPPORT</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="top-right">
+  <a href="admin.html" class="admin-btn">Admin Access button🔐</a>
+</div>
+
+<div class="container glass">
+  <h1 class="title">💜 QUEEN DANI SUPPORT 💜</h1>
+  <p class="subtitle">Drop your suggestion below:</p>
+
+  <textarea id="text"></textarea>
+  <button class="main-btn" onclick="sendSuggestion()">Submit Suggestion</button>
+
+  <p id="status"></p>
+</div>
+
+<script>
+  function sendSuggestion() {
+    let text = document.getElementById("text").value;
+    let status = document.getElementById("status");
+
+    if (!text.trim()) {
+      status.textContent = "Please enter a suggestion.";
+      return;
+    }
+
+    let all = JSON.parse(localStorage.getItem("suggestions") || "[]");
+
+    all.push({
+      text: text,
+      reply: "",
+      time: new Date().toISOString()
+    });
+
+    localStorage.setItem("suggestions", JSON.stringify(all));
+
+    status.textContent = "Sent ✔";
+    document.getElementById("text").value = "";
+  }
+</script>
+
+</body>
+</html>
