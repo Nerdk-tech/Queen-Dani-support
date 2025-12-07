@@ -8,7 +8,10 @@ body {
   animation: luxuryMove 12s ease infinite;
   padding: 40px;
   color: white;
-  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
 }
 
 @keyframes luxuryMove {
@@ -19,7 +22,7 @@ body {
 
 
 /* -------------------------------------
-   FLOAT-IN ANIMATION (ENTRY)
+   FLOAT ANIMATIONS
 -------------------------------------- */
 @keyframes floatIn {
   0% {
@@ -32,7 +35,6 @@ body {
   }
 }
 
-/* Gentle idle floating */
 @keyframes idleFloat {
   0% { transform: translateY(0); }
   50% { transform: translateY(-6px); }
@@ -41,20 +43,21 @@ body {
 
 
 /* -------------------------------------
-   LUXURY GLASS CONTAINER
+   FIXED RESPONSIVE CONTAINER
 -------------------------------------- */
 .container {
-  max-width: 520px;
-  margin: auto;
+  width: 100%;
+  max-width: 420px;      /* PERFECT SIZE on desktop + phone */
+  margin-top: 30px;
   animation: floatIn 1s ease forwards, idleFloat 5s ease-in-out infinite;
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(25px);
   border-radius: 25px;
   padding: 30px;
-  box-shadow: 0 15px 45px rgba(0,0,0,0.4);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.4);
   border: 1px solid rgba(255, 255, 255, 0.25);
   animation: floatIn 1.2s ease forwards;
 }
@@ -65,10 +68,9 @@ body {
 -------------------------------------- */
 .title {
   text-align: center;
-  font-size: 34px;
+  font-size: 30px;
   margin-bottom: 20px;
   font-weight: 700;
-  letter-spacing: 1px;
   animation: floatIn 1s ease forwards;
 }
 
@@ -77,14 +79,14 @@ body {
    ADMIN BUTTON
 -------------------------------------- */
 .top-right {
-  position: absolute;
+  position: fixed;
   top: 20px;
   right: 20px;
-  animation: floatIn 1s ease forwards;
+  z-index: 999;
 }
 
 .admin-btn {
-  padding: 12px 18px;
+  padding: 12px 20px;
   background: rgba(255,255,255,0.20);
   border-radius: 12px;
   color: white;
@@ -96,13 +98,12 @@ body {
 }
 
 .admin-btn:hover {
-  transform: scale(1.07);
-  background: rgba(255,255,255,0.28);
+  transform: scale(1.08);
 }
 
 
 /* -------------------------------------
-   INPUTS / TEXTAREA
+   INPUTS
 -------------------------------------- */
 textarea, .input {
   width: 100%;
@@ -114,47 +115,46 @@ textarea, .input {
   resize: none;
   background: rgba(255,255,255,0.18);
   color: white;
-  box-shadow: inset 0 0 10px rgba(255,255,255,0.1);
   margin-bottom: 12px;
-  animation: floatIn 1.3s ease forwards;
+  animation: floatIn 1.25s ease forwards;
 }
 
 
 /* -------------------------------------
-   BUTTONS
+   BUTTONS (FIXED BIG SIZE)
 -------------------------------------- */
+.main-btn, .secondary-btn {
+  width: 100%;             /* FULL SIZE FIX */
+  display: block;          /* FIX SHRINKING */
+}
+
 .main-btn {
-  width: 100%;
-  padding: 14px;
+  padding: 15px;
   border-radius: 14px;
-  border: none;
   font-size: 20px;
   font-weight: 700;
   background: linear-gradient(135deg, #ffe391, #ffd45e, #fff2c7);
+  border: none;
   color: #1a1a1a;
   cursor: pointer;
-  transition: 0.25s;
   box-shadow: 0 0 15px rgba(255, 215, 90, 0.8);
-  animation: floatIn 1.35s ease forwards;
+  margin-top: 8px;
+  animation: floatIn 1.3s ease forwards;
 }
 
 .main-btn:hover {
   transform: scale(1.06);
-  box-shadow: 0 0 25px rgba(255, 215, 90, 1);
 }
 
 .secondary-btn {
   padding: 12px;
-  width: 100%;
   border-radius: 12px;
-  border: none;
-  font-weight: 600;
+  font-size: 17px;
   background: linear-gradient(135deg, #9f6aff, #b987ff);
-  color: white;
-  margin-top: 8px;
+  border: none;
   cursor: pointer;
-  transition: 0.25s;
-  animation: floatIn 1.45s ease forwards;
+  margin-top: 10px;
+  animation: floatIn 1.4s ease forwards;
 }
 
 .secondary-btn:hover {
@@ -170,7 +170,7 @@ textarea, .input {
   border-radius: 18px;
   margin-bottom: 14px;
   background: rgba(255,255,255,0.15);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
   backdrop-filter: blur(10px);
   animation: floatIn 1.6s ease forwards;
 }
